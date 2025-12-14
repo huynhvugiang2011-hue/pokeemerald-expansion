@@ -28,7 +28,7 @@ jobs:
         make
 
     - name: Upload ROM
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: pokeemerald
         path: pokeemerald.gba
