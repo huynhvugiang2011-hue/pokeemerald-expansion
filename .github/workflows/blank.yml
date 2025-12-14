@@ -1,7 +1,6 @@
 name: Build pokeemerald
 
 on:
-  push:
   workflow_dispatch:
 
 jobs:
@@ -15,17 +14,16 @@ jobs:
     - name: Install dependencies
       run: |
         sudo apt update
-        sudo apt install -y build-essential python3 python3-pip git
+        sudo apt install -y build-essential python3 python3-pip git curl
 
     - name: Install devkitARM
       run: |
-        sudo apt install -y devkitpro-pacman
+        curl -L https://apt.devkitpro.org/install-devkitpro-pacman.sh | sudo bash
         sudo dkp-pacman -Syu --noconfirm
         sudo dkp-pacman -S --noconfirm gba-dev
 
     - name: Build ROM
-      run: |
-        make
+      run: make
 
     - name: Upload ROM
       uses: actions/upload-artifact@v4
